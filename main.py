@@ -1,6 +1,5 @@
 import random
 from tkinter import *
-from tkinter import messagebox
 
 score = 0
 run = True
@@ -50,10 +49,10 @@ while run:
     numberCharacter = len(wordString)
 
     print(numberCharacter, (wordString))
-
+    initialized = False
     def check(letter,button):
         i=0
-        global numbOfLetters,i1,x1
+        global initialized,numbOfLetters,i1,x1
         print(letter)
         if letter in wordString:
             indices = []
@@ -69,15 +68,32 @@ while run:
         x1 = 30
         i1 = 0
         numbOfLetters = 0
+
+        if not initialized:
+            while numbOfLetters < numberCharacter and initialized == False:
+                underLines = Label(app, text="____", background="#E7FFFF", foreground="#000")
+                underLines.place(x=x1, y=100, width=20, height=25)
+                numbOfLetters += 1
+                i1 += 1
+                x1 += 25
+            initialized = True
+
+
         while numbOfLetters < numberCharacter:
             correctLatters = Label(app, text=wordString[i1], font=("Arial", 14), background="#E7FFFF",foreground="#000")
-            correctLatters.place(x=x1, y=100, width=20, height=15)
+            correctLatters.place(x=x1, y=100, width=20, height=25)
 
             underLines = Label(app, text="____", background="#E7FFFF", foreground="#000")
-            underLines.place(x=x1, y=100, width=20, height=15)
+            underLines.place(x=x1, y=100, width=20, height=25)
+
+            underLines = Label(app, text="____", background="#E7FFFF", foreground="#000")
+            underLines.place(x=x1, y=100, width=20, height=25)
+
             if wordString[i1] == letter:
                 # acertou
                 correctLatters.lift()
+                underLines.destroy()
+
             numbOfLetters += 1
             i1 += 1
             x1 += 25
