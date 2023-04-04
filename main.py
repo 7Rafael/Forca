@@ -55,6 +55,7 @@ while run:
         global initialized,numbOfLetters,i1,x1
         print(letter)
         if letter in wordString:
+
             indices = []
             start_index = 0
             while True:
@@ -77,26 +78,20 @@ while run:
                 i1 += 1
                 x1 += 25
             initialized = True
+        i1 = 0
+        x1 = 30
+        for i in range(numberCharacter):
+            global numeroAcertos, numeroErros,run
+            correctLatters = Label(app, text=wordString[i], font=("Arial", 14), background="#E7FFFF",foreground="#000")
 
-
-        while numbOfLetters < numberCharacter:
-            correctLatters = Label(app, text=wordString[i1], font=("Arial", 14), background="#E7FFFF",foreground="#000")
-            correctLatters.place(x=x1, y=100, width=20, height=25)
-
-            underLines = Label(app, text="____", background="#E7FFFF", foreground="#000")
-            underLines.place(x=x1, y=100, width=20, height=25)
-
-            underLines = Label(app, text="____", background="#E7FFFF", foreground="#000")
-            underLines.place(x=x1, y=100, width=20, height=25)
-
-            if wordString[i1] == letter:
-                # acertou
-                correctLatters.lift()
-                underLines.destroy()
-
-            numbOfLetters += 1
-            i1 += 1
+            if wordString[i] == letter:
+                correctLatters.place(x=x1, y=100, width=20, height=25)
+                numeroAcertos+=1
+                if numeroAcertos == numberCharacter:
+                    print("Ganhou porra!!!!!!!!!!!!!")
             x1 += 25
-
-
+            
+   
+    run = False
     app.mainloop()
+
